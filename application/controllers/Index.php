@@ -27,10 +27,10 @@ class Index extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
+
     }
-    public function index($r=2) {
-        $data['r'] = $r;
-        $this->load->view('main/index',$data);
+    public function index() {
+        $data['active_navbar'] = "navbar-main";
+        $this->load->view('main/index');
     }
 }
