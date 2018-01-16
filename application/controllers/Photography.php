@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: zhaomin
+ * User: roens
  * Time: 2018-1-15 09:58:29
  */
 
@@ -13,8 +13,14 @@ class Photography extends CI_Controller {
         parent::__construct();
 
     }
+    //摄影首页
     public function index() {
         $data['active_navbar'] = "navbar-photography";
         $this->load->view('photography/index',$data);
+    }
+    //摄影新增页
+    public function add_page() {
+        $data['active_navbar'] = "navbar-photography";
+        $this->load->view('photography/new',$data);
     }
 }

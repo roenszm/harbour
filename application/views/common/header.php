@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-no-radius">
     <div class="container">
 
         <div class="navbar-header">
@@ -30,7 +30,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <span class="icon-bar"></span>
             </button>
         </div>
-
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li id="navbar-main"><a href="<?php echo site_url() ?>">首页</a></li>
