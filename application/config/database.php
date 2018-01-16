@@ -79,6 +79,7 @@ $db['develop'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'harbour',
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
