@@ -31,6 +31,6 @@ class Index extends CI_Controller {
     }
     public function index() {
         $data['active_navbar'] = "navbar-main";
-        $this->load->view('main/index');
+        $this->load->view('main/index',$data);
     }
 }
