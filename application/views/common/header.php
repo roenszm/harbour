@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <ul class="nav navbar-nav">
                 <li id="navbar-main"><a href="<?php echo site_url() ?>">首页</a></li>
                 <li id="navbar-photography"><a href="<?php echo site_url("photography") ?>">摄影</a></li>
-                <li id="navbar-essay"><a href="#">文字</a></li>
+                <li id="navbar-essay"><a href="<?php echo site_url("essay") ?>">文字</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

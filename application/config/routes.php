@@ -57,3 +57,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 //photography
 $route['photography/new'] = 'photography/add_page';
+
+//essay
+$route['essay/new'] = 'essay/add_page';
