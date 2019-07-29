@@ -21,6 +21,13 @@ class Essay extends CI_Controller {
     //文字编写页
     public function add_page() {
         $data['active_navbar'] = "navbar-essay";
-        $this->load->view('essay/new',$data);
+        $this->load->view('essay/publish',$data);
+    }
+    //保存文章
+    public function save() {
+        $this->load->model("Essay_model");
+        $ret = $this->Essay_model->save_record();
+        log_message("info",json_encode($ret));
+        echo json_encode($ret);
     }
 }
