@@ -57,22 +57,27 @@ class Essay_model extends CI_Model {
      * @param: params 查询参数及条件 array()
      */
     public function get_list($per_page,$page,$params) {
-        $sql = `select ec.id, ec.title, ec.sub_title, u.username,
+        $sql = "select ec.id, ec.title, ec.sub_title, u.username,
                 case
-                when timestampdiff(second, create_time, now()) < 60 then "刚刚"
-                when timestampdiff(second, create_time, now()) < (60*60) then concat("约",round(timestampdiff(second, create_time, now())/60),"分钟前")
-                when timestampdiff(second, create_time, now()) < (24*60*60) then concat("约",round(timestampdiff(second, create_time, now())/(60*60)),"小时前")
-                when timestampdiff(second, create_time, now()) < (7*24*60*60) then concat("约",round(timestampdiff(second, create_time, now())/(24*60*60)),"天前")
-                else create_time as create_time
+                when timestampdiff(second, ec.create_time, now()) < 60 then '刚刚'
+                when timestampdiff(second, ec.create_time, now()) < (60*60) then concat('约',round(timestampdiff(second, ec.create_time, now())/60),'分钟前')
+                when timestampdiff(second, ec.create_time, now()) < (24*60*60) then concat('约',round(timestampdiff(second, ec.create_time, now())/(60*60)),'小时前')
+                when timestampdiff(second, ec.create_time, now()) < (7*24*60*60) then concat('约',round(timestampdiff(second, ec.create_time, now())/(24*60*60)),'天前')
+                else ec.create_time
+				end create_time
                 from essay_content ec
                 left join user u on u.id=ec.user_id
-                where ec.active=1`;
+                where ec.active=1";
         if ($page < 1) {
             $page = 1;
         }
         $offset = ($page - 1) * $per_page;
         $limit = $per_page;
-        $sql .= ` limit `. $offset . `,`. $limit;
+        $sql .= " limit ". $offset . ",". $limit;
+        //echo $sql;
+        $query = $this->db->query($sql);
+        return $query->result_array();
+
     }
 
 }

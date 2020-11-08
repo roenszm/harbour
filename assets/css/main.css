@@ -5,3 +5,14 @@
 body {
     background: #f3f3f3;
 }
+
+.essay-list {
+    margin-top: 15px;
+    padding: 20px;
+    background: #fff;
+}
+
+.essay-list .table>tbody>tr>td {
+    padding: 10px;
+    border: none;
+}

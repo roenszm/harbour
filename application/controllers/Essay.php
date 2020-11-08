@@ -15,7 +15,9 @@ class Essay extends CI_Controller {
     }
     //文字首页
     public function index() {
+        $this->load->model("Essay_model");
         $data['active_navbar'] = "navbar-essay";
+        $data['essay_list'] = $this->Essay_model->get_list(20,1,array());
         $this->load->view('essay/index',$data);
     }
     //文字编写页

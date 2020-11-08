@@ -24,3 +24,6 @@ class Photography extends CI_Controller {
         $this->load->view('photography/new',$data);
     }
 }
+
+
+
