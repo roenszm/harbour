@@ -18,6 +18,8 @@ class Essay extends CI_Controller {
         $this->load->model("Essay_model");
         $data['active_navbar'] = "navbar-essay";
         $data['essay_list'] = $this->Essay_model->get_list(20,1,array());
+        $data['essay_count'] = $this->Essay_model->get_count(array());
+        log_message("info","query essay count:".$data['essay_count']);
         $this->load->view('essay/index',$data);
     }
     //文字编写页
@@ -29,7 +31,7 @@ class Essay extends CI_Controller {
     public function save() {
         $this->load->model("Essay_model");
         $ret = $this->Essay_model->save_record();
-        log_message("info",json_encode($ret));
+        log_message("info","save essay info:".json_encode($ret));
         echo json_encode($ret);
     }
 }

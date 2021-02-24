@@ -80,4 +80,11 @@ class Essay_model extends CI_Model {
 
     }
 
+    //获取条件下的文章总数
+    public function get_count($params){
+        $this->db->where("active", 1);
+        return $this->db->count_all_results("essay_content");
+
+    }
+
 }
