@@ -4,34 +4,43 @@
  * User: roens
  * Time: 2018-1-15 09:58:29
  */
+require ('BaseController.php');
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Essay extends CI_Controller {
+class Essay extends BaseController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
     }
+
     //文字首页
-    public function index() {
-        $this->load->model("Essay_model");
+    public function index()
+    {
+        $this->load->model('Essay_model');
         $data['active_navbar'] = "navbar-essay";
-        $data['essay_list'] = $this->Essay_model->get_list(20,1,array());
+        $data['essay_list'] = $this->Essay_model->get_list(20, 1, array());
         $data['essay_count'] = $this->Essay_model->get_count(array());
-        log_message("info","query essay count:".$data['essay_count']);
-        $this->load->view('essay/index',$data);
+        log_message('info', "【info】query essay count:" . $data['essay_count']);
+        $this->load->view('essay/index', $data);
     }
+
     //文字编写页
-    public function add_page() {
+    public function add_page()
+    {
         $data['active_navbar'] = "navbar-essay";
-        $this->load->view('essay/publish',$data);
+        $this->load->view('essay/publish', $data);
     }
+
     //保存文章
-    public function save() {
-        $this->load->model("Essay_model");
+    public function save()
+    {
+        $this->load->model('Essay_model');
         $ret = $this->Essay_model->save_record();
-        log_message("info","save essay info:".json_encode($ret));
+        log_message('info', "【info】save essay info:" . json_encode($ret));
         echo json_encode($ret);
     }
 }
