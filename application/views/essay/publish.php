@@ -1,5 +1,4 @@
 <?php $this->load->view('common/header');?>
-
 	<div>
         <form id="essay-publish">
             <div class="form-group">

@@ -55,6 +55,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 //my own routes
 
+//basic
+$route['submitLogin'] = 'index/login';
+
 //photography
 $route['photography/new'] = 'photography/add_page';
 

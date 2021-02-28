@@ -15,6 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <script src="<?php echo base_url() ?>assets/js/jquery-3.2.1.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+
 </head>
 <body>
 
@@ -56,24 +58,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="modal-body">
                             <form id="user-login">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="user_id" placeholder="邮箱">
+                                <div class="form-group email-form-group">
+                                    <label>邮箱</label>
+                                    <input type="email" class="form-control" required name="user_email" placeholder="请输入邮箱">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="user_password" placeholder="密码">
+                                    <label>密码</label>
+                                    <input type="password" class="form-control" required minlength="6" name="user_password" placeholder="请输入密码">
                                 </div>
-                                <div class="form-group">
 
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 保持登录
-                                        </label>
-                                    </div>
-
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="keep_login"> 保持登录
+                                    </label>
                                 </div>
                                 <div class="form-group">
-                                    <a class="btn btn-primary">登录</a>
-                                    <a class="btn btn-default">取消</a>
+                                    <button class="btn btn-primary user-login-btn" type="submit">登录</button>
+                                    <button class="btn btn-default" data-dismiss="modal">取消</button>
                                 </div>
                             </form>
                         </div>
@@ -83,6 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div><!--/.nav-collapse -->
     </div>
+
 </nav>
 <?php if (isset($active_navbar)) { ?>
     <script>
