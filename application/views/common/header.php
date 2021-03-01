@@ -39,49 +39,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li id="navbar-photography"><a href="<?php echo site_url("photography") ?>">摄影</a></li>
                 <li id="navbar-essay"><a href="<?php echo site_url("essay") ?>">文字</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">
-                        <small>注册</small>
-                    </a></li>
-                <li><a href="#" data-toggle="modal" data-target="#login-modal">
-                        <small>登录</small>
-                    </a></li>
-            </ul>
-            <!-- modal -->
-            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">登录</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form id="user-login">
-                                <div class="form-group email-form-group">
-                                    <label>邮箱</label>
-                                    <input type="email" class="form-control" required name="user_email" placeholder="请输入邮箱">
-                                </div>
-                                <div class="form-group">
-                                    <label>密码</label>
-                                    <input type="password" class="form-control" required minlength="6" name="user_password" placeholder="请输入密码">
-                                </div>
+            <?php if (!$this->session->has_userdata('user_id')) { ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">
+                            <small>注册</small>
+                        </a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">
+                            <small>登录</small>
+                        </a>
+                    </li>
+                </ul>
+                <!-- modal -->
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">登录</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="user-login">
+                                    <div class="form-group email-form-group">
+                                        <label>邮箱</label>
+                                        <input type="email" class="form-control" required name="user_email"
+                                               placeholder="请输入邮箱">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>密码</label>
+                                        <input type="password" class="form-control" required minlength="6"
+                                               name="user_password" placeholder="请输入密码">
+                                    </div>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="keep_login"> 保持登录
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary user-login-btn" type="submit">登录</button>
-                                    <button class="btn btn-default" data-dismiss="modal">取消</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="keep_login"> 保持登录
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary user-login-btn" type="submit">登录</button>
+                                        <button class="btn btn-default" data-dismiss="modal">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            <?php } else { ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><?php echo $this->session->userdata('user_name'); ?></a></li>
+                </ul>
+            <?php } ?>
         </div><!--/.nav-collapse -->
     </div>
 

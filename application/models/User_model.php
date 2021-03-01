@@ -22,5 +22,10 @@ class User_model extends CI_Model
 
     }
 
+    //验证cookie中的user信息是否有效
+    function query_cookie_user($id, $email){
+        $query = $this->db->get_where('user',array('id'=>$id,'email'=>$email));
+        return $query->row();
+    }
 
 }
