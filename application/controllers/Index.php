@@ -105,4 +105,21 @@ class Index extends BaseController
 
         echo json_encode($ret);
     }
+
+    //登出当前账号
+    public function logout()
+    {
+        //删除session会话状态
+        $arr = array('user_id','user_name','user_email','user_is_verify','user_pri');
+        $this->session->unset_userdata($arr);
+        //删除cookie登录状态
+        $this->input->set_cookie('harbour_user_id','','');
+        $this->input->set_cookie('harbour_user_email','','');
+
+        $ret = array(
+            'err_code' => 0,
+            'err_msg' => "已登出！"
+        );
+        echo json_encode($ret);
+    }
 }

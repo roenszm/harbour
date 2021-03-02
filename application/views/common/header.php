@@ -88,7 +88,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div><!-- /.modal -->
             <?php } else { ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><?php echo $this->session->userdata('user_name'); ?></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <?php echo $this->session->userdata('user_name'); ?> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="logout()">登出</a></li>
+                        </ul>
+                    </li>
                 </ul>
             <?php } ?>
         </div><!--/.nav-collapse -->

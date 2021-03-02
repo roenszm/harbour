@@ -1,13 +1,15 @@
-<?php $this->load->view('common/header');?>
-	<div>
-        <a class="btn btn-primary" href="<?php echo site_url('/essay/new')?>">新增文章</a>
+<?php $this->load->view('common/header'); ?>
+    <div>
+        <?php if ($this->session->has_userdata('user_pri') && ($this->session->userdata('user_pri') == 0)) { ?>
+            <a class="btn btn-primary" href="<?php echo site_url('/essay/new') ?>">新增文章</a>
+        <?php } ?>
         <div class="essay-list">
             <table class="table table-striped">
                 <tbody>
-                <?php foreach ($essay_list as $row){ ?>
+                <?php foreach ($essay_list as $row) { ?>
                     <tr>
                         <td width="90%">
-                            <a href="#"><?php echo $row["title"];?></a>
+                            <a href="#"><?php echo $row["title"]; ?></a>
                         </td>
                         <td>
                             user
@@ -37,5 +39,5 @@
             </nav>
         </div>
 
-	</div>
-<?php $this->load->view('common/footer');?>
+    </div>
+<?php $this->load->view('common/footer'); ?>
