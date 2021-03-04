@@ -57,17 +57,18 @@ class Index extends BaseController
                 'err_code' => 1,
                 'err_msg' => "邮箱格式有误，请检查！"
             );
+        } else{
+            $this->load->model('User_model');
+            $row = $this->User_model->query_login_user();
+            log_message('info', "【info】login check result:" . json_encode($row));
+            if (!$row) {
+                $ret = array(
+                    'err_code' => 1,
+                    'err_msg' => "邮箱或密码错误，请重试！"
+                );
+            }
         }
 
-        $this->load->model('User_model');
-        $row = $this->User_model->query_login_user();
-        log_message('info', "【info】login check result:" . json_encode($row));
-        if (!$row) {
-            $ret = array(
-                'err_code' => 1,
-                'err_msg' => "邮箱或密码错误，请重试！"
-            );
-        }
         if ($ret['err_code'] == 0) {
             //写入session和cookie
             //保持登录则写入cookie时间较长，不保持登录则只保持session会话时长

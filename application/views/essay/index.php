@@ -12,7 +12,7 @@
                             <a href="#"><?php echo $row["title"]; ?></a>
                         </td>
                         <td>
-                            user
+                            <a href="#"><?php echo $row['username']; ?></a>
                         </td>
                     </tr>
                 <?php } ?>

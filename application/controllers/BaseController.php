@@ -23,7 +23,6 @@ class BaseController extends CI_Controller
         log_message('info', "【info】session user_id:" . $this->session->userdata('user_id'));
         if (!$this->session->has_userdata('user_id')) {
             $userdata = $this->input->cookie(array('harbour_user_id', 'harbour_user_email'));
-//            log_message('info', "【info】cookie data:" . json_encode($userdata));
             if ($userdata['harbour_user_id'] && $userdata['harbour_user_email']) {
                 $this->load->library('encrypt');
                 $user_id = $this->encrypt->decode($userdata['harbour_user_id']);
