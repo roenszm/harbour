@@ -18,14 +18,21 @@ class Essay extends BaseController
     }
 
     //文字首页
-    public function index()
+    public function index($page = 1)
     {
         $this->load->model('Essay_model');
         $data['active_navbar'] = "navbar-essay";
-        $data['essay_list'] = $this->Essay_model->get_list(20, 1, array());
-        $data['essay_count'] = $this->Essay_model->get_count(array());
-        log_message('info', "【info】query essay count:" . $data['essay_count']);
-        $this->load->view('essay/index', $data);
+        $data['essay_list'] = $this->Essay_model->get_list(10, $page, array());
+        $essay_count = $this->Essay_model->get_count(array());
+        $data['total_page'] = intval(ceil($essay_count / 10));
+        if ($page > $data['total_page']) {
+            show_404();
+        } else {
+            $data['page'] = $page;
+            log_message('info', "【info】total essay count:" . $essay_count . " total page:" . $data['total_page']);
+            $this->load->view('essay/index', $data);
+        }
+
     }
 
     //文字编写页

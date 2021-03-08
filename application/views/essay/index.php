@@ -4,39 +4,70 @@
             <a class="btn btn-primary" href="<?php echo site_url('/essay/new') ?>">新增文章</a>
         <?php } ?>
         <div class="essay-list">
-            <table class="table table-striped">
-                <tbody>
-                <?php foreach ($essay_list as $row) { ?>
-                    <tr>
-                        <td width="90%">
-                            <a href="#"><?php echo $row["title"]; ?></a>
-                        </td>
-                        <td>
+            <?php foreach ($essay_list as $row) { ?>
+                <div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4>
+                                <small>
+                                    <?php if ($row['type'] == 1) { ?>
+                                        <span class="glyphicon glyphicon-file text-primary" aria-hidden="true"
+                                              title="独立文章"></span>
+                                    <?php } elseif ($row['type'] == 2) { ?>
+                                        <span class="glyphicon glyphicon-th-list text-primary" aria-hidden="true"
+                                              title="分章节文章"></span>
+                                    <?php } ?>
+                                </small>
+                                <span class="label label-info"><?php echo $row['category_name']; ?></span>
+                                <a href="#"><b><?php echo $row['title']; ?></b></a>
+                            </h4>
+                            <p><?php echo $row['subtitle']; ?></p>
+                        </div>
+                        <div class="col-md-2">
                             <a href="#"><?php echo $row['username']; ?></a>
-                        </td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                            <p class="text-muted">
+                                <small>更新于 <?php echo $row['status_time']; ?></small>
+                            </p>
+                        </div>
+                    </div>
+                    <!--
+                    <div>
+                        <p class="text-muted">
+                            标签：
+                        </p>
+                    </div>
+                    -->
+                </div>
+            <?php } ?>
+
+            <ul class="pagination">
+                <li <?php if ($page <= 1){ ?>class="disabled"<?php } ?>>
+                    <a <?php if ($page > 1){ ?>href="<?php echo site_url("essay") ?>"<?php } ?> aria-label="First">
+                        <span aria-hidden="true">首页</span>
+                    </a>
+                </li>
+                <li <?php if ($page <= 1){ ?>class="disabled"<?php } ?>>
+                    <a <?php if ($page > 1){ ?>href="<?php echo $page > 2 ? site_url("essay/page/" . ($page - 1)) : site_url("essay") ?>"<?php } ?>
+                       aria-label="Previous">
+                        <span aria-hidden="true">上一页</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a><?php echo $page; ?></a>
+                </li>
+                <li <?php if ($page >= $total_page){ ?>class="disabled"<?php } ?>>
+                    <a <?php if ($page < $total_page){ ?>href="<?php echo site_url("essay/page/" . ($page + 1)); ?>"<?php } ?>
+                       aria-label="Next">
+                        <span aria-hidden="true">下一页</span>
+                    </a>
+                </li>
+                <li <?php if ($page >= $total_page){ ?>class="disabled"<?php } ?>>
+                    <a <?php if ($page < $total_page){ ?>href="<?php echo site_url("essay/page/" . $total_page); ?>"<?php } ?>
+                       aria-label="Last">
+                        <span aria-hidden="true">末页(共<?php echo $total_page; ?>页)</span>
+                    </a>
+                </li>
+            </ul>
         </div>
 
     </div>

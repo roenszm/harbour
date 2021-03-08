@@ -15,17 +15,19 @@ class Essay_model extends CI_Model
      */
     public function get_list($per_page, $page, $params)
     {
-        $sql = "select e.id, e.title, e.subtitle, u.username,e.user_id,
+        $sql = "select e.id, e.title, e.subtitle, u.username, e.user_id, e.type, e.category_id, ec.`name` category_name,
                 case
                 when timestampdiff(second, e.update_time, now()) < 60 then '刚刚'
                 when timestampdiff(second, e.update_time, now()) < (60*60) then concat(round(timestampdiff(second, e.update_time, now())/60),\"分钟前\")
                 when timestampdiff(second, e.update_time, now()) < (24*60*60) then concat(round(timestampdiff(second, e.update_time, now())/(60*60)),\"小时前\")
                 when timestampdiff(second, e.update_time, now()) < (7*24*60*60) then concat(round(timestampdiff(second, e.update_time, now())/(24*60*60)),\"天前\")
                 else e.update_time 
-				end update_time
+				end status_time
                 from essay_info e
                 left join user u on u.id=e.user_id
-                where e.active=1";
+                left join essay_category ec on e.category_id=ec.id
+                where e.active=1
+                order by e.update_time desc";
         if ($page < 1) {
             $page = 1;
         }
