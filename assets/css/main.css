@@ -14,12 +14,17 @@ body {
     color: #999;
 }
 
-.essay-list {
+.bottom-20 {
+    margin-bottom: 20px;
+}
+
+.essay-page {
     margin-top: 15px;
     padding: 20px;
-    background: #fff;
+    background: #fcfcfc;
 }
-.essay-list > div {
+
+.essay-page > div.essay-item {
     border-bottom: 1px solid #eee;
     padding: 10px 5px 15px 0;
 }

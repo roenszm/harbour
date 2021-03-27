@@ -22,5 +22,13 @@ class Functions
         return $match;
     }
 
+    //过滤并转义post输入的textarea数据，目前暂时先把\n换行符替换为html的换行符
+    public function filter_content($str)
+    {
+//        log_message("info", "【info】filter input textarea.");
+        $str = str_replace(array("\r\n","\n","\r"), "<br/>", $str);
+
+        return $str;
+    }
 
 }

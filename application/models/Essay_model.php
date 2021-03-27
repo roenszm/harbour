@@ -43,8 +43,8 @@ class Essay_model extends CI_Model
     //获取条件下的文章总数
     public function get_count($params)
     {
-        $this->db->where("active", 1);
-        return $this->db->count_all_results("essay_info");
+        $this->db->where($params);
+        return $this->db->count_all_results('essay_info');
 
     }
 
@@ -63,7 +63,7 @@ class Essay_model extends CI_Model
             'title' => $params['title'],
             'subtitle' => $params['subtitle'],
             'create_time' => $datetime,
-            'modify_time' => $datetime,
+            //'modify_time' => $datetime,
             'update_time' => $datetime,
             'type' => $params['type'],
             'category_id' => $params['category'],
@@ -90,7 +90,7 @@ class Essay_model extends CI_Model
                 'chapter_subtitle' => $params['subtitle'],
                 'chapter_content' => $params['content'],
                 'create_time' => $datetime,
-                'modify_time' => $datetime,
+                //'modify_time' => $datetime,
                 'active' => $params['active'],
                 'user_id' => $params['user_id'],
                 'index' => 1
@@ -117,6 +117,43 @@ class Essay_model extends CI_Model
         }
         $this->db->trans_complete();
         return $ret;
+
+    }
+
+    //获取essay_info文章的章节数
+    public function get_chapter_num($params)
+    {
+        $this->db->where($params);
+        return $this->db->count_all_results("essay_chapter");
+    }
+
+    //按照id获得essay_info的一条记录
+    public function get_essay($id)
+    {
+        $sql = "select e.*, ec.`name` category_name, u.username
+                from essay_info e
+                left join essay_category ec on ec.id = e.category_id
+                left join user u on u.id = e.user_id
+                where e.id=" . $id;
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+
+    //获取essay_id的第一篇chapter详细内容
+    public function get_first_chapter($id)
+    {
+        $sql = "select ec.*, u.username
+                from essay_chapter ec
+                left join user u on u.id = ec.user_id
+                where ec.`index`=1 and ec.essay_id=".$id;
+        $query = $this->db->query($sql);
+        return $query->row_array();
+
+    }
+
+    //获取章节文章的文章章节信息,不包含章节内容
+    public function get_chapter_info($id)
+    {
 
     }
 
